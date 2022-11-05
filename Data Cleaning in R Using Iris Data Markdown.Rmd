@@ -7,7 +7,7 @@ output: html_document
 
 ### In this project I will use R to clean dirty data from a dataset of iris flower specimens.
 
-First I'll set the ***working directory***:
+First I'll set the **working directory**:
 
 ```{r}
 setwd("/cloud/project/Data Cleaning")
@@ -27,7 +27,7 @@ install.packages("janitor")
 library(janitor)
 ```
 
-Let's now ***make all the variable names consistent*** and relabel the new data.
+Let's now **make all the variable names consistent** and relabel the new data.
 
 ```{r}
 data2 <-clean_names(data)
@@ -39,12 +39,12 @@ Now let's view the effects of the cleaning.
 data2
 ```
 
-Perfect. There may also be ***empty rows or columns***; let's check for and remove those.
+Perfect. There may also be **empty rows or columns**; let's check for and remove those.
 
 ```{r}
 data3 <- remove_empty(data2, which = c("rows", "cols"), quiet = FALSE)
 ```
-No issues there, but it was a good measure. Now let's use dplyr to ***clear out any duplicate data***.
+No issues there, but it was a good measure. Now let's use dplyr to **clear out any duplicate data**.
 
 ```{r}
 library(dplyr)
@@ -52,19 +52,19 @@ data_cleaned <- distinct(data3)
 data_cleaned
 ```
 
-We can also clear duplicate data with regards to a ***specific variable or column***:
+We can also clear duplicate data with regards to a **specific variable or column**:
 
 ```{r}
 data_cleaned2 <- distinct(data_cleaned, petal_length, .keep_all = TRUE)
 data_cleaned2
 ```
 
-And finally let's ***correct the capitalisation*** in the species column to make it consistently lowercase, just because it's nicer looking that way.
+And finally let's **correct the capitalisation** in the species column to make it consistently lowercase, just because it's nicer looking that way.
 
 ```{r}
 data_cleaned2 %>% mutate(species = tolower(species))
 ```
 
-***And there we have it***; we've done a quick clean of dirty data in R using janitor and dplyr. Thanks for reading!
+**And there we have it**; we've done a quick clean of dirty data in R using janitor and dplyr. Thanks for reading!
 
 -Melanie
